@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UserInterface"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1024">
+        Title="MainWindow" 
+        Height="807" Width="1040" 
+        ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="InputBoxStyle" TargetType="{x:Type TextBox}">
             <Style.Resources>
@@ -14,7 +16,12 @@
                     <!-- drawing a shadow of border -->
                     <Setter Property="Effect">
                         <Setter.Value>
-                            <DropShadowEffect ShadowDepth="8" BlurRadius="5.5" Direction="315" Color="Black" Opacity="0.85"/>
+                            <DropShadowEffect 
+                                ShadowDepth="8" 
+                                BlurRadius="5.5" 
+                                Direction="315" 
+                                Color="Black" 
+                                Opacity="0.85"/>
                         </Setter.Value>
                     </Setter>
                 </Style>
@@ -26,8 +33,10 @@
                 </Trigger>
             </Style.Triggers>
             <!-- event handlers works but text box border color didnt change anymore -->
-            <EventSetter Event="MouseEnter" Handler="InputBox_OnMouseOver"></EventSetter>
-            <EventSetter Event="MouseLeave" Handler="InputBox_OnMouseLeave"></EventSetter>
+            <EventSetter Event="MouseEnter" Handler="InputBox_OnMouseOver"/>
+            <EventSetter Event="MouseLeave" Handler="InputBox_OnMouseLeave"/>
+            <EventSetter Event="GotFocus" Handler="InputBox_OnFocus"/>
+            <EventSetter Event="KeyDown" Handler="InputBox_OnContentChanged"/>
             <Setter Property="BorderBrush">
                 <Setter.Value>
                     <LinearGradientBrush EndPoint="1.0, 0.0">
@@ -39,13 +48,25 @@
                 </Setter.Value>
             </Setter>
             <Setter Property="CaretBrush" Value="#62EE17"/>
-            <!-- how to use multiple effects??? : split style into functional blocks -->
             <!-- blurring a text into the text box -->
             <Setter Property="Effect">
                 <Setter.Value>
                     <BlurEffect KernelType="Gaussian" Radius="2.25"/>
                 </Setter.Value>
             </Setter>
+        </Style>
+        <Style x:Key="SelectLeftTeam" TargetType="{x:Type Rectangle}">
+            <EventSetter Event="MouseEnter" Handler="OnLeftTeamMouseOver"/>
+            <EventSetter Event="MouseLeave" Handler="OnLeftTeamMouseLeave"/>
+            <EventSetter Event="MouseLeftButtonDown" Handler="OnLeftTeamSelected"/>
+        </Style>
+        <Style x:Key="SelectRightTeam" TargetType="{x:Type Rectangle}">
+            <EventSetter Event="MouseEnter" Handler="OnRightTeamMouseOver"/>
+            <EventSetter Event="MouseLeave" Handler="OnRightTeamMouseLeave"/>
+            <EventSetter Event="MouseLeftButtonDown" Handler="OnRightTeamSelected"/>
+        </Style>
+        <Style x:Key="ClosedAnswerMode" TargetType="{x:Type Label}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
     </Window.Resources>
     <Grid>

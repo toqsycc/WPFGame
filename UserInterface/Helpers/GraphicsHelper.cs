@@ -1,10 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
-namespace UserInterface
+namespace UserInterface.Helpers
 {
     [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
     public class GraphicsHelper
